@@ -7,3 +7,7 @@ export const calculateTax = async (req: Request, res: Response) => {
   const taxResult = await parkService.addTax(Step.WELCOME); // req.body.step
   return res.json({ taxResult });
 };
+
+export const getProd = async (req: Request, res: Response) => {
+  return res.json({ Hello: "Hello World" });
+};

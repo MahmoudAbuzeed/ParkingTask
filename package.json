@@ -50,7 +50,7 @@
     "package-json-validator": "^0.6.3",
     "proxyquire": "^2.0.0",
     "supertest": "^3.0.0",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.2.4"
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4"
   }
 }

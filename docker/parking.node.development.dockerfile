@@ -4,6 +4,7 @@ LABEL author="Mahmoud Abozeed"
 WORKDIR /parking
 
 RUN npm install -g pm2@latest
+RUN npm install -g nodemon
 RUN pm2 install typescript
 RUN yarn install
 

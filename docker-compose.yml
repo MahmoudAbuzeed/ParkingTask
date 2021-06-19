@@ -27,25 +27,25 @@ services:
       - "8000:8000"
     volumes:
       - .:/parking
-    depends_on:
-      - mongo
+    # depends_on:
+    #   - mongo
     env_file:
       - ./docker/env/app.development.env
     networks:
       - parking-project-network
 
-  mongo:
-    container_name: mongo
-    image: mongo
-    build:
-      context: .
-      dockerfile: ./docker/mongo.dockerfile
-    ports:
-      - "27017:27017"
-    env_file:
-      - ./docker/env/mongo.development.env
-    networks:
-      - parking-project-network
+  # mongo:
+  #   container_name: mongo
+  #   image: mongo
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/mongo.dockerfile
+  #   ports:
+  #     - "27017:27017"
+  #   env_file:
+  #     - ./docker/env/mongo.development.env
+  #   networks:
+  #     - parking-project-network
 
 networks:
   parking-project-network:

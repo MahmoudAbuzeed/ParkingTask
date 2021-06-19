@@ -3,8 +3,8 @@ import { ProcessEnv } from "../types/Enviroment/index";
 
 // Set the NODE_ENV to 'development' by default
 process.env.NODE_ENV = process.env.NODE_ENV || "development";
-
 const envFound = dotenv.config();
+console.log(process.env.PORT);
 if (envFound.error) throw new Error("⚠️  Couldn't find .env file  ⚠️");
 
 export default {

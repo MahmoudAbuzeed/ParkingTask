@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import { get } from '../../../controller/product';
+import { Router } from "express";
+import { getProd } from "../../../controller/product";
 const route = Router();
 
 export default (app: Router) => {
-  app.use('/product', route);
+  app.use("/product", route);
 
-  route.get('/', get);
+  route.get("/", getProd);
 };
