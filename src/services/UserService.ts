@@ -24,8 +24,6 @@ export default class UserService {
     const newUser = await userRepo.addUser(user);
     const newCard = await this.cardService.createCard(card, newUser);
     const newCar = await this.carService.registerCar(car, newUser, newCard);
-    console.log(newCar);
-    console.log(newCard);
 
     newUser["cards"] = [...newUser["cards"], newCard._id];
     newUser["cars"] = [...newUser["cars"], newCar._id];
