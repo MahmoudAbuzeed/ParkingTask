@@ -5,6 +5,7 @@ import {
   updateCar,
   deleteCar,
   registerCar,
+  passedCar,
 } from "../../../controller/car";
 const route = Router();
 
@@ -16,4 +17,6 @@ export default (app: Router) => {
   route.post("/update-car", updateCar);
   route.post("/delete-car", deleteCar);
   route.post("/register-car", registerCar);
+
+  route.post("/passed-car", passedCar);
 };

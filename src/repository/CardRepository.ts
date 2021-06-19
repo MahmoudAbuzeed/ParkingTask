@@ -7,6 +7,11 @@ class CardRepository {
     const newCard = await registerItem(card, CardModel);
     return newCard;
   }
+
+  async getCardById(plateNumber: any): Promise<ICard> {
+    let card = await CardModel.findById(plateNumber);
+    return card;
+  }
 }
 
 export default CardRepository;

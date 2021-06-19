@@ -1,13 +1,13 @@
-import morgan from 'morgan';
-import Logger from '../index';
+import morgan from "morgan";
+import Logger from "../index";
 
-const format = ':requestId :method :url :status :response-time ms';
+const format = ":requestId :method :url :status :response-time ms";
 
-morgan.token('requestId', (request: any) => request.id);
+morgan.token("requestId", (request: any) => request.id);
 
 const options = {
   stream: {
-    write: (message) => Logger.log(message.trim()),
+    write: (message: string) => Logger.log(message.trim()),
   },
 };
 

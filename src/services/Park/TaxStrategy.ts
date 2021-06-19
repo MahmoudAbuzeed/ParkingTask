@@ -1,13 +1,17 @@
 import IParkTax from "./IParkTax";
 
-export default class TaxStrategy{
-  private taskStrategy: IParkTax;
+export default class TaxStrategy {
+  private taxStrategy: IParkTax;
 
-  setTaxStrategy(taskStrategy: IParkTax){
-    this.taskStrategy = taskStrategy;
+  constructor(taxStrategy: IParkTax) {
+    this.taxStrategy = taxStrategy;
   }
 
-  calculateTax(currentTax: number){
-    return this.taskStrategy.calculateTax(currentTax);
+  setTaxStrategy(taxStrategy: IParkTax) {
+    this.taxStrategy = taxStrategy;
+  }
+
+  calculateTax(currentTax: number) {
+    return this.taxStrategy.calculateTax(currentTax);
   }
 }

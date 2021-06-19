@@ -2,12 +2,17 @@ import CarRepository from "../repository/CarRepository";
 import CardRepository from "../repository/CardRepository";
 import { Messages } from "../messages/index";
 import ICar from "../interface/ICar";
+import CardService from "./CardService";
+
+import { calculateTax } from "../controller/product";
 
 const CarRepo = new CarRepository();
 const CardRepo = new CardRepository();
+const cardService = new CardService();
 
 export default class CarService {
   constructor() {}
+
   async getAllCars() {
     return await CarRepo.getAllCars();
   }
@@ -32,5 +37,14 @@ export default class CarService {
 
   async deleteCar(carId: string) {
     return await CarRepo.deleteCar(carId);
+  }
+
+  async passedCar(carId: any, routeType: string) {
+    const passedCar = await CarRepo.gatSingleCar(carId);
+    if (passedCar) {
+      const card = await cardService.getSingleCard(passedCar.plateNumber);
+    } else {
+      return { error: Messages.doseNotExist };
+    }
   }
 }

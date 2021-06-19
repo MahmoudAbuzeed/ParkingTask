@@ -4,16 +4,16 @@ import GateTax from "./Park/GateTax";
 import HighwayWelcomeTax from "./Park/HighwayWelcomeTax";
 import TaxStrategy from "./Park/TaxStrategy";
 
-export default class ParkService{
+export default class ParkService {
   private taxStrategy: TaxStrategy;
   private parkRepository: ParkRepository;
 
-  constructor(){
-    this.taxStrategy = new TaxStrategy();
+  constructor() {
+    this.taxStrategy = new TaxStrategy(new HighwayWelcomeTax());
     this.parkRepository = new ParkRepository();
   }
 
-  async addTax(step: string){
+  async addTax(step: string) {
     const lastTax = await this.parkRepository.getLastTax();
     switch (step) {
       case Step.WELCOME:
