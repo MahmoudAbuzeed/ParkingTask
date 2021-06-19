@@ -22,7 +22,12 @@ export const deleteCar = async (req: any, res: any) => {
   return res.json({ deletedCar });
 };
 
+export const registerCar = async (req: any, res: any) => {
+  const newCar = await carService.registerCar(req.body.car);
+  return res.json({ newCar });
+};
+
 export const passedCar = async (req: any, res: Response) => {
-  const finalTax = await carService.passedCar(req.carId, req.routeType);
+  const finalTax = await carService.passedCar(req.carId, req.body.routeType);
   return res.json({ finalTax });
 };

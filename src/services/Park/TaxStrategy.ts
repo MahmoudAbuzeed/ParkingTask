@@ -11,7 +11,7 @@ export default class TaxStrategy {
     this.taxStrategy = taxStrategy;
   }
 
-  calculateTax(currentTax: number) {
-    return this.taxStrategy.calculateTax(currentTax);
+  calculateTax(currentTax: number, step: string) {
+    return this.taxStrategy.calculateTax(currentTax, step);
   }
 }

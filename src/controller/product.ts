@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import ParkService from "../services/ParkService";
-import { Step } from "../services/Employee/Step";
 
-export const calculateTax = async (req: Request, res: Response) => {
+export const calculateTax = async (step: string, currentTax: number) => {
   const parkService = new ParkService();
-  const taxResult = await parkService.addTax(Step.WELCOME); // req.body.step
-  return res.json({ taxResult });
+  const taxResult = await parkService.addTax(step, currentTax);
+  return taxResult;
 };
 
 export const getProd = async (req: Request, res: Response) => {

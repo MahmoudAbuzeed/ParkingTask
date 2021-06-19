@@ -1,14 +1,16 @@
 import CarRepository from "../repository/CarRepository";
 import CardRepository from "../repository/CardRepository";
-import { Messages } from "../messages/index";
-import ICar from "../interface/ICar";
+import HighwayWelcomeTax from "./Park/HighwayWelcomeTax";
+import TaxStrategy from "./Park/TaxStrategy";
 import CardService from "./CardService";
+import ICar from "../interface/ICar";
 
-import { calculateTax } from "../controller/product";
+import { Messages } from "../messages/index";
 
 const CarRepo = new CarRepository();
 const CardRepo = new CardRepository();
 const cardService = new CardService();
+const taskStrategy = new TaxStrategy(new HighwayWelcomeTax());
 
 export default class CarService {
   constructor() {}
@@ -39,10 +41,12 @@ export default class CarService {
     return await CarRepo.deleteCar(carId);
   }
 
-  async passedCar(carId: any, routeType: string) {
+  async passedCar(carId: any, step: string) {
     const passedCar = await CarRepo.gatSingleCar(carId);
     if (passedCar) {
       const card = await cardService.getSingleCard(passedCar.plateNumber);
+      const finalTax = taskStrategy.calculateTax(card.tax, step);
+      return finalTax;
     } else {
       return { error: Messages.doseNotExist };
     }

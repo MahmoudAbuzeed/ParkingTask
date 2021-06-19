@@ -13,7 +13,7 @@ export default class ParkService {
     this.parkRepository = new ParkRepository();
   }
 
-  async addTax(step: string) {
+  async addTax(step: string, currentTax: number) {
     const lastTax = await this.parkRepository.getLastTax();
     switch (step) {
       case Step.WELCOME:
@@ -25,6 +25,6 @@ export default class ParkService {
       default:
         break;
     }
-    return this.taxStrategy.calculateTax(lastTax.value);
+    return this.taxStrategy.calculateTax(currentTax, step);
   }
 }

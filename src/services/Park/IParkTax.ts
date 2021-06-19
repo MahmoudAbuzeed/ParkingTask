@@ -1,3 +1,3 @@
-export default interface IParkTax{
-  calculateTax(currentTax:number): number
+export default interface IParkTax {
+  calculateTax(currentTax: number, step: string): number;
 }

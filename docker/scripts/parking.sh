@@ -1,2 +1,2 @@
-echo "Starting Streams Service 🚀🚀🔥🔥"
+echo "Starting Parking Service 🚀🚀🔥🔥"
 nodemon ./src/index.ts
