@@ -1,0 +1,52 @@
+# Depends_on Control Services Startup Order
+# Don't Forget Set Environment Variables Before Run This yml file
+# APP_ENV=development || production
+# windows >> set APP_ENV=development
+version: "3"
+
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: ./docker/nginx.development.dockerfile
+    depends_on:
+      - parking
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - parking-project-network
+
+  parking:
+    container_name: Parking-Service
+    build:
+      context: .
+      dockerfile: ./docker/parking.node.development.dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/parking
+    depends_on:
+      - mongo
+    env_file:
+      - ./docker/env/app.development.env
+    networks:
+      - parking-project-network
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    build:
+      context: .
+      dockerfile: ./docker/mongo.dockerfile
+    ports:
+      - "27017:27017"
+    env_file:
+      - ./docker/env/mongo.development.env
+    networks:
+      - parking-project-network
+
+networks:
+  parking-project-network:
+    driver: bridge
