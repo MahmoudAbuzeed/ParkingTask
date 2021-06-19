@@ -26,7 +26,8 @@ export const deleteCar = async (req: Request, res: any) => {
 };
 
 export const registerCar = async (req: Request, res: any) => {
-  const newCar = await carService.registerCar(req.body.car);
+  console.log(req.body);
+  const newCar = await carService.registerCar(req.body.car, req.body.user);
   return res.status(200).json({ newCar });
 };
 

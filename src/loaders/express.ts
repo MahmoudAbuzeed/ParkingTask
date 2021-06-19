@@ -5,12 +5,14 @@ import cors from "cors";
 import config from "../config";
 import expressRequestId from "express-request-id";
 import requestLogger from "../shared/utils/logger/loggers/RequestLogger";
+import bodyParser from "body-parser";
 
 export default (app: Application) => {
   app.get("/status", (req: Request, res: Response) => {
     res.status(200).send("It Works Fine");
   });
 
+  app.use(bodyParser());
   app.use(expressRequestId());
   app.use(requestLogger);
   app.use(cors());

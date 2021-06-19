@@ -19,10 +19,10 @@ export default class CarService {
     return await CarRepo.getAllCars();
   }
 
-  async registerCar(car: any) {
+  async registerCar(car: any, user: any) {
     const newCar = await CarRepo.registerCar(car);
     if (newCar) {
-      const newCard = await CardRepo.createCard(newCar);
+      const newCard = await CardRepo.createCard(newCar, user);
       return { newCar, newCard };
     } else {
       return { error: Messages.FailedCreate };

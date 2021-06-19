@@ -1,6 +1,5 @@
-import { Schema, Document, model } from "mongoose";
+import mongoose, { Schema, Document, model } from "mongoose";
 import IUser from "../interface/IUser";
-import mongoose from "mongoose";
 
 const { ObjectId } = mongoose.Schema.Types;
 

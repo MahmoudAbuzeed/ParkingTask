@@ -6,7 +6,7 @@ export const registerItem = async (itemParam: any, Model: any) => {
   if (item) {
     return { error: Messages.AlreadyExists };
   } else {
-    let newItem = new Model(item);
+    let newItem = new Model(itemParam);
     newItem.save();
     return newItem;
   }

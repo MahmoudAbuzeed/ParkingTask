@@ -1,14 +1,20 @@
 import ICard from "../interface/ICard";
 import CardModel from "../models/Card";
-import { registerItem } from "../shared/functions/registerItem";
+import { Messages } from "../messages/index";
 
 class CardRepository {
-  async createCard(card: any): Promise<ICard> {
-    const newCard = await registerItem(card, CardModel);
+  async createCard(card: any, user: any): Promise<ICard> {
+    const UserCard = await CardModel.findOne({
+      platteNumber: card.platteNumber,
+    });
+
+    if (UserCard) return UserCard;
+    let newCard = new CardModel({ card, user: user.id });
+    newCard.save();
     return newCard;
   }
 
-  async getCardById(plateNumber: any): Promise<ICard> {
+  async getCardByPlateNumber(plateNumber: any): Promise<ICard> {
     let card = await CardModel.findById(plateNumber);
     return card;
   }
