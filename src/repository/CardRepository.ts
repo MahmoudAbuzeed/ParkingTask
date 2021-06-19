@@ -4,12 +4,7 @@ import { Messages } from "../messages/index";
 
 class CardRepository {
   async createCard(card: any, user: any): Promise<ICard> {
-    const UserCard = await CardModel.findOne({
-      platteNumber: card.platteNumber,
-    });
-
-    if (UserCard) return UserCard;
-    let newCard = new CardModel({ card, user: user.id });
+    let newCard = new CardModel({ tax: card.tax, user: user.id });
     newCard.save();
     return newCard;
   }

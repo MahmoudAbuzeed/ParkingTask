@@ -22,8 +22,14 @@ export default class UserService {
   async addNewUser(user: IUser, card: ICard, car: ICar): Promise<IUser> {
     const userRepo = new UserRepository();
     const newUser = await userRepo.addUser(user);
-    await this.carService.registerCar(car, newUser);
-    await this.cardService.createCard(card, newUser);
+    const newCard = await this.cardService.createCard(card, newUser);
+    const newCar = await this.carService.registerCar(car, newUser, newCard);
+    console.log(newCar);
+    console.log(newCard);
+
+    newUser["cards"] = [...newUser["cards"], newCard._id];
+    newUser["cars"] = [...newUser["cars"], newCar._id];
+    await newUser.save();
 
     return newUser;
   }

@@ -1,5 +1,7 @@
 import { MongoNetworkError } from "mongodb";
 import ICar from "../interface/ICar";
+import ICard from "../interface/ICard";
+import IUser from "../interface/IUser";
 import CarModel from "../models/Car";
 
 import { registerItem } from "../shared/functions/registerItem";
@@ -23,9 +25,8 @@ class CarRepository {
     return await CarModel.findOneAndUpdate({ _id: carId }, { $set: carObj });
   }
 
-  async registerCar(carParam: any): Promise<ICar> {
-    const newCar = await registerItem(carParam, CarModel);
-    return newCar;
+  async registerCar(car: ICar, user: IUser, card: ICard): Promise<ICar> {
+    return await CarModel.create({ ...car, user: user._id, card: card._id });
   }
 }
 

@@ -6,6 +6,7 @@ import CardService from "./CardService";
 import ICar from "../interface/ICar";
 
 import { Messages } from "../messages/index";
+import ICard from "../interface/ICard";
 
 const CarRepo = new CarRepository();
 const CardRepo = new CardRepository();
@@ -19,14 +20,8 @@ export default class CarService {
     return await CarRepo.getAllCars();
   }
 
-  async registerCar(car: any, user: any) {
-    const newCar = await CarRepo.registerCar(car);
-    if (newCar) {
-      const newCard = await CardRepo.createCard(newCar, user);
-      return { newCar, newCard };
-    } else {
-      return { error: Messages.FailedCreate };
-    }
+  async registerCar(car: any, user: any, card: ICard) {
+    return await CarRepo.registerCar(car, user, card);
   }
 
   async getCarById(carId: string) {
