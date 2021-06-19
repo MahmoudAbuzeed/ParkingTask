@@ -12,7 +12,7 @@ const route = Router();
 export default (app: Router) => {
   app.use("/car", route);
 
-  route.get("/all-cars", getCars);
+  route.get("/", getCars);
   route.get("/get-single-car", getSingleCar);
   route.post("/update-car", updateCar);
   route.post("/delete-car", deleteCar);

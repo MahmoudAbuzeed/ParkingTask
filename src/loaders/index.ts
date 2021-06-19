@@ -3,6 +3,6 @@ import expressLoader from "./express";
 import mongooseLoader from "./mongoose";
 
 export default async (app: Application) => {
-  // await mongooseLoader();
+  await mongooseLoader();
   expressLoader(app);
 };

@@ -2,32 +2,38 @@ import { Request, Response } from "express";
 import CarService from "../services/CarService";
 const carService = new CarService();
 
-export const getCars = async (res: Response) => {
+export const getCars = async (req: Request, res: Response) => {
   const cars = await carService.getAllCars();
-  return res.json({ cars });
+  return res.status(200).json({ cars });
 };
 
-export const getSingleCar = async (req: any, res: any) => {
-  const singleCar = await carService.getCarById(req.carId);
-  return res.json({ singleCar });
+export const getSingleCar = async (req: Request, res: any) => {
+  const singleCar = await carService.getCarById(req.body.carId);
+  return res.status(200).json({ singleCar });
 };
 
-export const updateCar = async (req: any, res: any) => {
-  const updatedCar = await carService.updateCar(req.carId, req.carObj);
-  return res.json({ updatedCar });
+export const updateCar = async (req: Request, res: any) => {
+  const updatedCar = await carService.updateCar(
+    req.body.carId,
+    req.body.carObj
+  );
+  return res.status(200).json({ updatedCar });
 };
 
-export const deleteCar = async (req: any, res: any) => {
-  const deletedCar = await carService.deleteCar(req.carId);
-  return res.json({ deletedCar });
+export const deleteCar = async (req: Request, res: any) => {
+  const deletedCar = await carService.deleteCar(req.body.carId);
+  return res.status(200).json({ deletedCar });
 };
 
-export const registerCar = async (req: any, res: any) => {
+export const registerCar = async (req: Request, res: any) => {
   const newCar = await carService.registerCar(req.body.car);
-  return res.json({ newCar });
+  return res.status(200).json({ newCar });
 };
 
-export const passedCar = async (req: any, res: Response) => {
-  const finalTax = await carService.passedCar(req.carId, req.body.routeType);
-  return res.json({ finalTax });
+export const passedCar = async (req: Request, res: Response) => {
+  const finalTax = await carService.passedCar(
+    req.body.carId,
+    req.body.routeType
+  );
+  return res.status(200).json({ finalTax });
 };
