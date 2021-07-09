@@ -14,12 +14,12 @@ This Project Related to Design Back-End For PARKING Application
 # Features
 
 - Dockerize Whole Services in YML File (Nginx, Nodejs, MongoDB)
-- Assign User to Each Card With Mutiple Cars
+- Assign User to Each Card With Multiple Cars
 - Added Strategy Design Pattern For Calculating Taxes
-- Calculating Taxes For Different Cases Like Hightway and Normal Gate
+- Calculating Taxes For Different Cases Like Highway and Normal Gate
 - Caching User Using Redis Caching [Redis Expire Key Seconds] To Detect If User left within 1 Min (Not Implemented Yet)
 - CRUD Operations For all Entities
-- Service Layers Responsible For Bussiness Logic
+- Service Layers Responsible For Business Logic
 - Repository Layer Responsible For DB
 
 # Project Pictures
